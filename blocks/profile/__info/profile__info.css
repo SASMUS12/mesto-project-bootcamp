@@ -1,0 +1,9 @@
+  .profile__info {
+    align-items: start;
+    display: grid;
+    grid-template-columns: max-content min-content;
+    line-height: 1.14;
+    grid-column-gap: 18px;
+    grid-row-gap: 16px;
+
+  }

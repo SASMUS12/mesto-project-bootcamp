@@ -1,0 +1,10 @@
+.cards__img {
+  min-height: 282px;
+  height: 282px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}

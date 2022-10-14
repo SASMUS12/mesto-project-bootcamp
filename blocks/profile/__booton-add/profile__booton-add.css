@@ -1,0 +1,13 @@
+.profile__booton-add {
+  background-image: url("/images/Plus.svg");
+  background-size: 22px 22px;
+  border: 2px solid #fff;
+  margin-left: auto;
+  min-height: 50px;
+  min-width: 150px;
+  background-color: #000;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  padding: 0;
+}

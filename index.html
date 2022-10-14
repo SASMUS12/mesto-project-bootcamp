@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="keywords" content="HTML5, CSS">
+  <meta name="author" content="Александр Васько">
   <title>Mesto</title>
   <link rel="icon" type="image/svg" href="/images/location_map_icon_mesto.svg">
 </head>
 <body class="page">
   <header class="header">
-      <img class="header__logo" src="./images/Vector.svg">
+    <img class="header__logo" src="/images/logo.svg" alt="Логотип">
   </header>
-
   <main class="content">
     <section class="profile">
-      <buttom class="profile__avatar-edit" tape="buttom" title="Обновить"><img class="profile__avatar" src="/images/avatar.png" alt="Аватар пофиля"></buttom>
+      <div class="profile__avatar-edit"><img class="profile__avatar" src="/images/avatar.png" alt="Аватар пофиля"></div>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__btn-edit" type="button" title="Редактировать профиль"></button>
@@ -22,12 +24,51 @@
       </div>
       <button class="profile__booton-add" type="button" title="Добавить новое фото"></button>
     </section>
-
     <section class="elements">
-      <ul class="element__list"></ul>
+      <article class="cards">
+        <img class="cards__img" src="/images/karachaevsk.jpg" alt="Горный город Карачаевск">
+        <div class="cards__content">
+          <h2 class="cards__text">Карачаевск</h2>
+          <img class="cards__like" src="/images/Like.svg" alt="Сердечко для лайков">
+        </div>
+      </article>
+      <article class="cards">
+        <img class="cards__img" src="/images/Elbrus.jpg" alt="Гора Эльбрус">
+        <div class="cards__content">
+          <h2 class="cards__text" >Гора Эльбрус</h2>
+          <img class="cards__like" src="/images/Like.svg" alt="Сердечко для лайков">
+        </div>
+      </article>
+      <article class="cards">
+        <img class="cards__img" src="/images/Dombay .jpg" alt="Горная местность Домбай">
+        <div class="cards__content">
+          <h2 class="cards__text" >Домбай</h2>
+          <img class="cards__like" src="/images/Like.svg" alt="Сердечко для лайков">
+        </div>
+      </article>
+      <article class="cards">
+        <img class="cards__img" src="/images/rock-Elbrus.jpg" alt="Грра Эльбрус">
+        <div class="cards__content">
+          <h2 class="cards__text" >Гора Эльбрус</h2>
+          <img class="cards__like" src="/images/Like.svg" alt="Сердечко для лайков">
+        </div>
+      </article>
+      <article class="cards">
+        <img class="cards__img" src="/images/Dombay-rock.jpg" alt="Гора Дамбай">
+        <div class="cards__content">
+          <h2 class="cards__text" >Домбай</h2>
+          <img class="cards__like" src="/images/Like.svg" alt="Сердечко для лайков">
+        </div>
+      </article>
+      <article class="cards">
+        <img class="cards__img" src="/images/Rarachaevsk-cherkesk.jpg" alt="Город Карачаево-Черкеск">
+        <div class="cards__content">
+          <h2 class="cards__text" >Карачаево-Черкесия</h2>
+          <img class="cards__like" src="/images/Like.svg" alt="Сердечко для лайков">
+        </div>
+      </article>
     </section>
   </main>
-
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>

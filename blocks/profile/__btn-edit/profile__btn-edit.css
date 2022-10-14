@@ -1,0 +1,21 @@
+.profile__btn-edit {
+  background-image: url(/images/pencil.svg);
+  background-color: #000;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  border: 1px solid #fff;
+  height: 24px;
+  width: 24px;
+  margin: 15px 0 0 0;
+}
+
+
+@media screen and (max-width: 768px) {
+  .profile__btn-edit {
+    height: 18px;
+    width: 18px;
+    margin: 9px 0 0 0;
+
+  }
+}
