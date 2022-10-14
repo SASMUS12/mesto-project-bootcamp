@@ -3,3 +3,16 @@
   display: flex;
   margin: 36px auto 47px;
 }
+
+@media screen and (max-width: 1024px) {
+  .profile {
+    max-width: calc(100% - 38px)
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    flex-direction: column;
+    margin: 38px auto 36px;
+  }
+}
