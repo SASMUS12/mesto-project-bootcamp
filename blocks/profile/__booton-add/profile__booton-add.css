@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   border-radius: 2px;
   padding: 0;
+  cursor:pointer;
 }
 
 @media screen and (max-width: 768px) {

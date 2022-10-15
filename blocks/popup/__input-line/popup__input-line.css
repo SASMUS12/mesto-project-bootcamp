@@ -1,0 +1,8 @@
+.popup__input-line {
+  font-size: 12px;
+  font-style: normal;
+  line-height: 15px;
+  margin-top: 5px;
+  opacity: 0;
+  transition: .3s;
+}
