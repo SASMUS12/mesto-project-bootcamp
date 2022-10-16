@@ -75,16 +75,14 @@
 </body>
 </html>
 
-<div class="popu0p popup_opened">
+<div class="popup popup_opened">
   <div class="popup__container">
     <button class="popup__close-button" type="button"></button>
     <h2 class="popup__title">Редактировать профиль</h2>
     <form class="popup__form" name="form_edit" novalidate>
       <fieldset class="popup__fieldset">
-        <input id="title" type="text" placeholder="Имя" class="popup__input" name="name" required minlength="2" maxlength="40">
-        <span class="popup__input-line"></span>
-        <input id="description" type="text" placeholder="О себе" class="popup__input" name="description" required minlength="2" maxlength="2000">
-        <span class="popup__input-line"></span>
+        <input id="title" type="text" placeholder="Имя" class="popup__input popup__input_type_title" name="name" required minlength="2" maxlength="40">
+        <input id="description" type="text" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="2000">
       </fieldset>
       <button type="submit" class="popup__save-button" name="save">Сохранить</button>
     </form>

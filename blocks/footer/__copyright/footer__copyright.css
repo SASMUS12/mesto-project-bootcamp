@@ -3,4 +3,12 @@
   font-weight: 400;
   line-height: 22px;
   margin: 0;
+  color: rgba(84, 84, 84, 1);
+}
+
+@media screen and (max-width: 767px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

@@ -8,12 +8,12 @@
   min-width: 358px;
   outline: none;
   position: relative;
-  padding: 30px 0 6px;
+  padding: 30px 0 13px;
 }
 
 @media screen and (max-width: 767px) {
   .popup__input {
-    padding: 43px 0 6px;
+    padding: 43px 0 13px;
     min-width: 238px;
 
   }

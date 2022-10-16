@@ -4,5 +4,13 @@
     grid-template-columns: max-content min-content;
     line-height: 1.14;
     grid-column-gap: 18px;
-    grid-row-gap: 8px;
+    grid-row-gap: 7px;
   }
+
+@media screen  and (max-width: 767px) {
+  .profile__info {
+    grid-column-gap: 10px;
+    grid-row-gap: 8px;
+    margin-top: 1px;
+  }
+}

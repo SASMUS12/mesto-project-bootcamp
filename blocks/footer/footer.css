@@ -1,5 +1,14 @@
 .footer {
-  color: rgba(84, 84, 84, 1);
-  margin: 0 auto 60px;
   max-width: 880px;
+  padding-top: 67px;
+  padding-bottom: 60px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    width: 282px;
+    padding-top: 48px;
+    padding-bottom: 36px;
+  }
 }
