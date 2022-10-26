@@ -2,10 +2,13 @@
   background-image: url("../../../images/Like.svg");
   height: 19px;
   width: 22px;
-  transition: opacity .6s ease;
   border: none;
   background-color: #fff;
   cursor:pointer;
-
+  transition: opacity .6s ease;
+  background-color: #fff;
+}
+.cards__like:hover {
+  opacity: .5;
 }
 

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <meta name="keywords" content="HTML5, CSS">
   <meta name="author" content="Александр Васько">
   <title>Mesto</title>
+  <link rel="stylesheet" type="text/css" href="./pages/index.css">
   <link rel="icon" type="image/svg" href="./images/location_map_icon_mesto.svg">
 </head>
 <body class="page">
@@ -19,72 +19,59 @@
       <div class="profile__avatar-edit"><img class="profile__avatar" src="./images/avatar.png" alt="Аватар пофиля"></div>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="profile__btn-edit button" type="button" title="Редактировать профиль"></button>
+        <button id="myBtn" class="profile__btn-edit button" type="button" title="Редактировать профиль"></button>
         <p class="profile__about">Исследователь океана</p>
       </div>
-      <button class="profile__booton-add button" type="button" title="Добавить новое фото"></button>
+      <button id="newLocationBtn"class="profile__booton-add button" type="button" title="Добавить новое фото"></button>
     </section>
     <section class="elements">
-      <article class="cards">
-        <img class="cards__img" src="./images/karachaevsk.jpg" alt="Горный город Карачаевск">
-        <div class="cards__content">
-          <h2 class="cards__text">Карачаевск</h2>
-          <button type="button" class="cards__like cards__like_active"></button>
-        </div>
-      </article>
-      <article class="cards">
-        <img class="cards__img" src="./images/Elbrus.jpg" alt="Гора Эльбрус">
-        <div class="cards__content">
-          <h2 class="cards__text" >Гора Эльбрус</h2>
-          <button type="button" class="cards__like cards__like_active"></button>
-        </div>
-      </article>
-      <article class="cards">
-        <img class="cards__img" src="./images/Dombay.jpg" alt="Горная местность Домбай">
-        <div class="cards__content">
-          <h2 class="cards__text" >Домбай</h2>
-          <button type="button" class="cards__like cards__like_active"></button>
-        </div>
-      </article>
-      <article class="cards">
-        <img class="cards__img" src="./images/rock-Elbrus.jpg" alt="Грра Эльбрус">
-        <div class="cards__content">
-          <h2 class="cards__text" >Гора Эльбрус</h2>
-          <button type="button" class="cards__like cards__like_active"></button>
-        </div>
-      </article>
-      <article class="cards">
-        <img class="cards__img" src="./images/Dombay-rock.jpg" alt="Гора Дамбай">
-        <div class="cards__content">
-          <h2 class="cards__text" >Домбай</h2>
-          <button type="button" class="cards__like cards__like_active"></button>
-        </div>
-      </article>
-      <article class="cards">
-        <img class="cards__img" src="./images/Rarachaevsk-cherkesk.jpg" alt="Город Карачаево-Черкеск">
-        <div class="cards__content">
-          <h2 class="cards__text" >Карачаево-Черкесия</h2>
-          <button type="button" class="cards__like cards__like_active"></button>
-        </div>
+      <article class="cards__item">
       </article>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
+  <div id="myModal" class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="form_edit" novalidate>
+        <fieldset class="popup__fieldset">
+          <input id="title" type="text" placeholder="Имя" class="popup__input popup__input_type_title" name="name" required minlength="2" maxlength="40">
+          <input id="description" type="text" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="2000">
+        </fieldset>
+        <button type="submit" class="popup__save-button" name="save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- popup новое место -->
+  <div id="newLocation" class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="form_edit" novalidate>
+        <fieldset class="popup__fieldset">
+          <input id="newTitle" type="text" placeholder="Название" class="newTitle popup__input popup__input_type_title" name="name" required minlength="2" maxlength="40">
+          <input id="linkImg" type="text" placeholder="Ссылка на картинку" class="linkImg popup__input popup__input_type_description" name="description" required minlength="2" maxlength="2000">
+        </fieldset>
+        <button type="submit" id='newButtonLocation' class="newButtonLocation popup__save-button" name="save">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Шаблон карточек -->
+  <template class="template">
+    <article class="cards">
+      <button type="button" class="cards__delete"></button>
+      <img class="cards__img" src="." alt="">
+      <div class="cards__content">
+        <h2 class="cards__text"></h2>
+        <button type="button" class="cards__like"></button>
+      </div>
+    </article>
+  </template>
+<script src="./blocks/page/index.js"></script>
 </body>
 </html>
-
-<div class="popup popup_opened">
-  <div class="popup__container">
-    <button class="popup__close-button" type="button"></button>
-    <h2 class="popup__title">Редактировать профиль</h2>
-    <form class="popup__form" name="form_edit" novalidate>
-      <fieldset class="popup__fieldset">
-        <input id="title" type="text" placeholder="Имя" class="popup__input popup__input_type_title" name="name" required minlength="2" maxlength="40">
-        <input id="description" type="text" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="2000">
-      </fieldset>
-      <button type="submit" class="popup__save-button" name="save">Сохранить</button>
-    </form>
-  </div>
-</div>

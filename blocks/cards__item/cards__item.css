@@ -1,4 +1,4 @@
-.elements {
+.cards__item {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(282px, 1fr));
@@ -8,13 +8,13 @@
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .elements {
+  .cards__item {
     grid-template-columns: repeat(2, 282px);
   }
 }
 
 @media screen and (max-width: 769px) {
-  .elements {
+  .cards__item {
     grid-template-columns: repeat(1, 282px);
   }
 }

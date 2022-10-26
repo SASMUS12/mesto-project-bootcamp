@@ -8,10 +8,11 @@
 @import url("../blocks/cards/__like/_active/cards__like_active.css");
 @import url("../blocks/cards/__text/cards__text.css");
 @import url("../blocks/cards/__content/cards__content.css");
+@import url("../blocks/cards/__delete/cards__delete.css");
 
 @import url("../blocks/content/content.css");
 
-@import url("../blocks/elements/elements.css");
+@import url("../blocks/cards__item/cards__item.css");
 
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
