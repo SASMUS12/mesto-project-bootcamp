@@ -24,7 +24,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-/***Эта функция добовляет карточку из иассива Она работает*********************/
+/***Эта функция добовляет карточку из иассива Она работает и из Попапа*********************/
 initialCards.forEach(addCardsMas);
 
 function addCardsMas(element) {
@@ -33,9 +33,15 @@ function addCardsMas(element) {
   const clonElement = addCard.querySelector('.cards').cloneNode(true);
   clonElement.querySelector('.cards__img').src = element.link;
   clonElement.querySelector('.cards__text').textContent = element.name;
+
   clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
   evt.target.classList.toggle('cards__like_active');
   });
+
+  clonElement.querySelector('.cards__delete').addEventListener('click', () => {
+  clonElement.closest('.cards').remove();
+  });
+
   usersOnline.append(clonElement);
 };
 
@@ -51,9 +57,14 @@ newButtonLocation.addEventListener('click', (evt) => {
   const clonElement = addCard.querySelector('.cards').cloneNode(true);
   clonElement.querySelector('.cards__text').textContent = title.value;
   clonElement.querySelector('.cards__img').src = link.value;
+
   clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
     evt.target.classList.toggle('cards__like_active');
     });
+
+  clonElement.querySelector('.cards__delete').addEventListener('click', () => {
+  clonElement.closest('.cards').remove();
+  });
   closeNewLocation();
   title.value = ' ';
   link.value = ' ';
@@ -64,9 +75,14 @@ newButtonLocation.addEventListener('click', (evt) => {
 
 const modal = document.querySelector('#myModal');
 const newLocation = document.querySelector('#newLocation');
+const bigImage = document.querySelector('#bigImage');
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#myBtn').addEventListener('click', openModal);
   document.querySelector('#newLocationBtn').addEventListener('click', openNewLocation);
+  document.querySelector('#bigFoto').addEventListener('click', openBigImage);
 });
   /**
    * Обработчик события клика по кнопке открытия модального окна
@@ -82,6 +98,19 @@ function openNewLocation() {
   newLocation.classList.add('popup_opened');
   attachModalEventsNewLocation();
 };
+
+const cardsImg = querySelector('.cards__img');
+const cardsText = querySelector('.cards__text');
+const popupImage = querySelector('.popup__image');
+const popupDecription = querySelector('.popup__decription');
+
+
+function openBigImage() {
+  bigImage.classList.add('popup_opened');
+
+  attachModalBigImage();
+};
+
 /**
    * Функция назначает обработчики событий к элементам модального окна при открытии
    */
@@ -96,9 +125,16 @@ function attachModalEventsNewLocation() {
   document.addEventListener('keydown', handleEscape);
   newLocation.addEventListener('click', handleOutside);
 }
+
+function attachModalBigImage() {
+  bigImage.querySelector('.popup__close-button').addEventListener('click', closeBigImage);
+  document.addEventListener('keydown', handleEscape);
+  bigImage.addEventListener('click', handleOutside);
+}
 /**
    * Обработчик события клика по кнопке закрытия модального окна
    */
+
 function closeModal() {
   modal.classList.remove('popup_opened');
   datachModalEvent();
@@ -106,7 +142,12 @@ function closeModal() {
 
 function closeNewLocation() {
   newLocation.classList.remove('popup_opened');
-  datachModalEventNewLocation();
+  datachNewLocationEvent();
+};
+
+function closeBigImage() {
+  bigImage.classList.remove('popup_opened');
+  datachBigImageEvent();
 };
 /**
  *  Функция удаляет обработчики событий к элементам модального окна при закрытии
@@ -117,10 +158,16 @@ function datachModalEvent() {
   modal.removeEventListener('click', handleOutside);
 };
 
-function datachModalEventNewLocation() {
+function datachNewLocationEvent() {
   newLocation.querySelector('.popup__close-button').removeEventListener('click', closeNewLocation);
   document.removeEventListener('keydown', handleEscape);
   newLocation.removeEventListener('click', handleOutside);
+}
+
+function datachBigImageEvent() {
+  bigImage.querySelector('.popup__close-button').removeEventListener('click', closeBigImage);
+  document.removeEventListener('keydown', handleEscape);
+  bigImage.removeEventListener('click', handleOutside);
 }
 /**
  * Функция закрывает модальное окно при нажатии клавиши Escape
@@ -129,6 +176,7 @@ function handleEscape(event) {
   if (event.key === 'Escape') {
     closeModal();
     closeNewLocation();
+    closeBigImage()
   }
 }
 /**
@@ -139,6 +187,7 @@ function handleOutside(event) {
   if (!isClickInside) {
     closeModal();
     closeNewLocation();
+    closeBigImage()
   }
 }
 /*********Внесение изменений в модальное окно */
@@ -155,5 +204,9 @@ function formSubmitHandler(evt) {
   popupContainer.classList.add('popup__opened');
   closeModal();
 };
+
 popupContainer.addEventListener('submit', formSubmitHandler);
+
+
+/******* Открытие попапа и картинкой*/
 
