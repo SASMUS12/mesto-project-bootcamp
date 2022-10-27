@@ -58,6 +58,11 @@ newButtonLocation.addEventListener('click', (evt) => {
   clonElement.querySelector('.cards__text').textContent = title.value;
   clonElement.querySelector('.cards__img').src = link.value;
 
+  clonElement.querySelector('.cards__item').addEventListener('click', () => {
+    document.querySelector('.popup__decription').textContent = title.value;
+    document.querySelector('.popup__image').src = link.value;
+  })
+
   clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
     evt.target.classList.toggle('cards__like_active');
     });
@@ -94,15 +99,17 @@ function openModal() {
   popupDescription.value = profileAbout.textContent;
 }
 
+
+
 function openNewLocation() {
   newLocation.classList.add('popup_opened');
   attachModalEventsNewLocation();
 };
 
-const cardsImg = querySelector('.cards__img');
-const cardsText = querySelector('.cards__text');
-const popupImage = querySelector('.popup__image');
-const popupDecription = querySelector('.popup__decription');
+const cardsImg = document.querySelector('.cards__img');
+const cardsText = document.querySelector('.cards__text');
+const popupImage = document.querySelector('.popup__image');
+const popupDecription = document.querySelector('.popup__decription');
 
 
 function openBigImage() {
