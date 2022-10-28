@@ -9,8 +9,8 @@
 ## :wrench: Стек технологий:
 :red_circle: HTML
 :red_circle: CSS
+:red_circle: JS
 :red_circle: БЭМ
-
 * Figma
 * Картинки
 
