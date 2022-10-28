@@ -24,28 +24,37 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-/***Эта функция добовляет карточку из иассива Она работает и из Попапа*********************/
-initialCards.forEach(addCardsMas);
+//Эта функция добовляет карточку из иассива
+initialCards.forEach(createCards);
 
-function addCardsMas(element) {
+function createCards(element) {
+  //Клонирование карточки
   const usersOnline = document.querySelector('.cards__item');
   const addCard = document.querySelector('.template').content;
   const clonElement = addCard.querySelector('.cards').cloneNode(true);
+  //получение данных с массива и передачу их в данные карточки( img, подпись.)
   clonElement.querySelector('.cards__img').src = element.link;
   clonElement.querySelector('.cards__text').textContent = element.name;
-
+  //Слушатель запуска увеличенного изображения карточки
+  clonElement.querySelector('.cards__img').addEventListener('click', () => {
+  openBigImage();
+  document.querySelector('.popup__image').src = clonElement.querySelector('.cards__img').src;
+  document.querySelector('popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
+  closeBigImage();
+  });
+ //Слушатель установки LIke
   clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
   evt.target.classList.toggle('cards__like_active');
   });
-
+ //Слушатель удаление карточки
   clonElement.querySelector('.cards__delete').addEventListener('click', () => {
   clonElement.closest('.cards').remove();
   });
-
+  //Добавление элемента карточки на страницу
   usersOnline.append(clonElement);
 };
 
-/****Добовляет картоски из popup */
+/****Добовляет карточки из popup */
 const title = document.querySelector('.newTitle');
 const link = document.querySelector('.linkImg');
 const newButtonLocation = document.querySelector('.newButtonLocation');
@@ -55,24 +64,32 @@ newButtonLocation.addEventListener('click', (evt) => {
   const addCard = document.querySelector('.template').content;
   const usersOnline = document.querySelector('.cards__item');
   const clonElement = addCard.querySelector('.cards').cloneNode(true);
+
+  //получение данных с попапа и передача их в шаблон карточек
   clonElement.querySelector('.cards__text').textContent = title.value;
   clonElement.querySelector('.cards__img').src = link.value;
 
-  clonElement.querySelector('.cards__item').addEventListener('click', () => {
-    document.querySelector('.popup__decription').textContent = title.value;
-    document.querySelector('.popup__image').src = link.value;
-  })
-
-  clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
-    evt.target.classList.toggle('cards__like_active');
-    });
-
-  clonElement.querySelector('.cards__delete').addEventListener('click', () => {
-  clonElement.closest('.cards').remove();
+  //Слушатель запуска увеличенного изображения
+  clonElement.querySelector('.cards__img').addEventListener('click', () => {
+  openBigImage();
+  document.querySelector('.popup__image').src = clonElement.querySelector('.cards__img').src;
+  document.querySelector('popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
+  closeBigImage();
   });
+  //Слушатель установки LIke
+  clonElement.querySelector('.cards__like').addEventListener('click', (evt) => {
+    evt.target.classList.toggle('cards__like_active');
+  });
+  //Слушатель удаление карточки
+  clonElement.querySelector('.cards__delete').addEventListener('click', () => {
+    clonElement.closest('.cards').remove();
+  });
+  //Функция удаления попапа "Новое место"
   closeNewLocation();
+  //Обнуление данных в полях попапа "новое место"
   title.value = ' ';
   link.value = ' ';
+  //Добавление элемента карточки на страницу
   usersOnline.prepend(clonElement);
 });
 
@@ -82,12 +99,15 @@ const modal = document.querySelector('#myModal');
 const newLocation = document.querySelector('#newLocation');
 const bigImage = document.querySelector('#bigImage');
 
-
+const cardsImg = document.querySelector('.cards__img');
+const cardsText = document.querySelector('.cards__text');
+const popupImage = document.querySelector('.popup__image');
+const popupDecription = document.querySelector('.popup__decription');
 
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#myBtn').addEventListener('click', openModal);
   document.querySelector('#newLocationBtn').addEventListener('click', openNewLocation);
-  document.querySelector('#bigFoto').addEventListener('click', openBigImage);
+  document.querySelector('.cards__img').addEventListener('click', openBigImage);
 });
   /**
    * Обработчик события клика по кнопке открытия модального окна
@@ -97,27 +117,15 @@ function openModal() {
   attachModalEvents();
   popupTitle.value = profileName.textContent;
   popupDescription.value = profileAbout.textContent;
-}
-
-
-
+};
 function openNewLocation() {
   newLocation.classList.add('popup_opened');
-  attachModalEventsNewLocation();
+  attachNewLocationEvents();
 };
-
-const cardsImg = document.querySelector('.cards__img');
-const cardsText = document.querySelector('.cards__text');
-const popupImage = document.querySelector('.popup__image');
-const popupDecription = document.querySelector('.popup__decription');
-
-
 function openBigImage() {
   bigImage.classList.add('popup_opened');
-
-  attachModalBigImage();
+  attachBigImageEvents();
 };
-
 /**
    * Функция назначает обработчики событий к элементам модального окна при открытии
    */
@@ -125,23 +133,21 @@ function attachModalEvents() {
   modal.querySelector('.popup__close-button').addEventListener('click', closeModal);
   document.addEventListener('keydown', handleEscape);
   modal.addEventListener('click', handleOutside);
-}
-
-function attachModalEventsNewLocation() {
+};
+function attachNewLocationEvents() {
   newLocation.querySelector('.popup__close-button').addEventListener('click', closeNewLocation);
   document.addEventListener('keydown', handleEscape);
   newLocation.addEventListener('click', handleOutside);
-}
+};
 
-function attachModalBigImage() {
+function attachBigImageEvents() {
   bigImage.querySelector('.popup__close-button').addEventListener('click', closeBigImage);
   document.addEventListener('keydown', handleEscape);
   bigImage.addEventListener('click', handleOutside);
-}
+};
 /**
    * Обработчик события клика по кнопке закрытия модального окна
    */
-
 function closeModal() {
   modal.classList.remove('popup_opened');
   datachModalEvent();
@@ -169,13 +175,13 @@ function datachNewLocationEvent() {
   newLocation.querySelector('.popup__close-button').removeEventListener('click', closeNewLocation);
   document.removeEventListener('keydown', handleEscape);
   newLocation.removeEventListener('click', handleOutside);
-}
-
+};
 function datachBigImageEvent() {
   bigImage.querySelector('.popup__close-button').removeEventListener('click', closeBigImage);
   document.removeEventListener('keydown', handleEscape);
   bigImage.removeEventListener('click', handleOutside);
-}
+};
+
 /**
  * Функция закрывает модальное окно при нажатии клавиши Escape
  */
@@ -183,21 +189,19 @@ function handleEscape(event) {
   if (event.key === 'Escape') {
     closeModal();
     closeNewLocation();
-    closeBigImage()
-  }
-}
-/**
- * Функция закрывает модальное окно при клике вне контента модального окна
- */
+    closeBigImage();
+  };
+};
+// Функция закрывает модальное окно при клике вне контента модального окна
 function handleOutside(event) {
   const isClickInside = !!event.target.closest('.popup__container');
   if (!isClickInside) {
     closeModal();
     closeNewLocation();
-    closeBigImage()
-  }
-}
-/*********Внесение изменений в модальное окно */
+    closeBigImage();
+  };
+};
+//Внесение изменений в модальное окно
 const popupContainer = document.querySelector('.popup__container');
 const popupTitle = document.querySelector('#title');
 const popupDescription = document.querySelector('#description');
@@ -211,9 +215,4 @@ function formSubmitHandler(evt) {
   popupContainer.classList.add('popup__opened');
   closeModal();
 };
-
 popupContainer.addEventListener('submit', formSubmitHandler);
-
-
-/******* Открытие попапа и картинкой*/
-

@@ -25,7 +25,7 @@
       <button id="newLocationBtn"class="profile__booton-add button" type="button" title="Добавить новое фото"></button>
     </section>
     <section class="elements">
-      <article id="bigFoto" class="cards__item">
+      <article class="cards__item">
       </article>
     </section>
   </main>
@@ -34,17 +34,17 @@
   </footer>
 
   <!-- Попап открытия изображения карточки -->
-  <div id="bigImage" class="popup">
+  <article id="bigImage" class="popup popup_type-image">
 	  <div class=popup__content>
-		  <button class="popup__close-button" title="Закрыть" type="button"></button>
+		  <button class="popup__close popup__close-button" title="Закрыть" type="button"></button>
       <img class="popup__image" src="" alt="">
       <h3 class="popup__decription"></h3>
     </div>
-  </div>
-  <!-- Попап  -->
+  </article>
+
   <div id="myModal" class="popup">
     <div class="popup__container">
-      <button class="popup__close-button" title="Закрыть" type="button"></button>
+      <button class="popup__close-button" type="button" title="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="form_edit" novalidate>
         <fieldset class="popup__fieldset">
@@ -59,7 +59,7 @@
   <!-- popup новое место -->
   <div id="newLocation" class="popup">
     <div class="popup__container">
-      <button class="popup__close-button" title="Закрыть" type="button"></button>
+      <button class="popup__close-button" type="button" title="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="form_edit" novalidate>
         <fieldset class="popup__fieldset">
@@ -74,8 +74,8 @@
   <!-- Шаблон карточек -->
   <template class="template">
     <article class="cards">
-      <button type="button" class="cards__delete"></button>
-      <img class="cards__img" src="" alt="">
+      <button type="button" class="cards__delete"title="Закрыть"></button>
+      <img class="cards__img" src="." alt="">
       <div class="cards__content">
         <h2 class="cards__text"></h2>
         <button type="button" class="cards__like"></button>
