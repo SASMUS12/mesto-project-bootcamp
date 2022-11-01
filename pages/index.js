@@ -29,9 +29,9 @@ initialCards.forEach(createCards);
 
 function createCards(element) {
   //Клонирование карточки
-  const usersOnline = document.querySelector('.cards__item');
+  const usersOnline = document.querySelector('.cards');
   const addCard = document.querySelector('.template').content;
-  const clonElement = addCard.querySelector('.cards').cloneNode(true);
+  const clonElement = addCard.querySelector('.cards__item').cloneNode(true);
   //получение данных с массива и передачу их в данные карточки( img, подпись.)
   clonElement.querySelector('.cards__img').src = element.link;
   clonElement.querySelector('.cards__text').textContent = element.name;
@@ -48,7 +48,7 @@ function createCards(element) {
   });
  //Слушатель удаление карточки
   clonElement.querySelector('.cards__delete').addEventListener('click', () => {
-  clonElement.closest('.cards').remove();
+  clonElement.closest('.cards__item').remove();
   });
   //Добавление элемента карточки на страницу
   usersOnline.append(clonElement);
@@ -62,8 +62,8 @@ const newButtonLocation = document.querySelector('.newButtonLocation');
 newButtonLocation.addEventListener('click', (evt) => {
   evt.preventDefault();
   const addCard = document.querySelector('.template').content;
-  const usersOnline = document.querySelector('.cards__item');
-  const clonElement = addCard.querySelector('.cards').cloneNode(true);
+  const usersOnline = document.querySelector('.cards');
+  const clonElement = addCard.querySelector('.cards__item').cloneNode(true);
 
   //получение данных с попапа и передача их в шаблон карточек
   clonElement.querySelector('.cards__text').textContent = title.value;
@@ -82,7 +82,7 @@ newButtonLocation.addEventListener('click', (evt) => {
   });
   //Слушатель удаление карточки
   clonElement.querySelector('.cards__delete').addEventListener('click', () => {
-    clonElement.closest('.cards').remove();
+    clonElement.closest('.cards__item').remove();
   });
   //Функция удаления попапа "Новое место"
   closeNewLocation();

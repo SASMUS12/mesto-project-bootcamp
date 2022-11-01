@@ -1,20 +1,8 @@
 .cards__item {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(282px, 1fr));
-  gap: 17px 20px;
-  justify-content: center;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  margin: 0;
   padding: 0;
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .cards__item {
-    grid-template-columns: repeat(2, 282px);
-  }
-}
-
-@media screen and (max-width: 769px) {
-  .cards__item {
-    grid-template-columns: repeat(1, 282px);
-  }
+  list-style-type: none;
 }

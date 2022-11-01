@@ -25,8 +25,8 @@
       <button id="newLocationBtn" class="profile__booton-add button" type="button" title="Добавить новое фото"></button>
     </section>
     <section class="elements">
-      <article class="cards__item">
-      </article>
+      <ul class="cards">
+      </ul>
     </section>
   </main>
   <footer class="footer">
@@ -73,15 +73,15 @@
 
   <!-- Шаблон карточек -->
   <template class="template">
-    <article class="cards">
+    <li class="cards__item">
       <button type="button" class="cards__delete" title="Закрыть"></button>
       <img class="cards__img" src="." alt="">
       <div class="cards__content">
         <h2 class="cards__text"></h2>
         <button type="button" class="cards__like"></button>
       </div>
-    </article>
+    </li>
   </template>
-<script src="./blocks/page/index.js"></script>
+<script src="./pages/index.js"></script>
 </body>
 </html>
