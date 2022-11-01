@@ -1,3 +1,7 @@
+const usersOnline = document.querySelector('.cards');
+const addCard = document.querySelector('.template').content;
+
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -29,8 +33,6 @@ initialCards.forEach(createCards);
 
 function createCards(element) {
   //Клонирование карточки
-  const usersOnline = document.querySelector('.cards');
-  const addCard = document.querySelector('.template').content;
   const clonElement = addCard.querySelector('.cards__item').cloneNode(true);
   //получение данных с массива и передачу их в данные карточки( img, подпись.)
   clonElement.querySelector('.cards__img').src = element.link;
@@ -40,7 +42,6 @@ function createCards(element) {
   openBigImage();
   document.querySelector('.popup__image').src = clonElement.querySelector('.cards__img').src;
   document.querySelector('.popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
-
   });
  //Слушатель установки LIke
   clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
