@@ -58,9 +58,9 @@ function createCards(element) {
 /****Добовляет карточки из popup */
 const title = document.querySelector('.newTitle');
 const link = document.querySelector('.linkImg');
-const newButtonLocation = document.querySelector('.newButtonLocation');
+const formnewLocation = document.querySelector('#formNewModal');
 
-newButtonLocation.addEventListener('click', (evt) => {
+formnewLocation.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const addCard = document.querySelector('.template').content;
   const usersOnline = document.querySelector('.cards');
@@ -86,6 +86,7 @@ newButtonLocation.addEventListener('click', (evt) => {
     clonElement.closest('.cards__item').remove();
   });
   //Функция удаления попапа "Новое место"
+  closeNewLocation();
   //Обнуление данных в полях попапа "новое место"
   title.value = ' ';
   link.value = ' ';
