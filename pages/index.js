@@ -39,12 +39,12 @@ function createCards(element) {
   clonElement.querySelector('.cards__img').addEventListener('click', () => {
   openBigImage();
   document.querySelector('.popup__image').src = clonElement.querySelector('.cards__img').src;
-  document.querySelector('popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
-  closeBigImage();
+  document.querySelector('.popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
+
   });
  //Слушатель установки LIke
   clonElement.querySelector('.cards__like').addEventListener('click', function(evt) {
-  evt.target.classList.toggle('cards__like_active');
+  evt.target.classList.toggle('.cards__like_active');
   });
  //Слушатель удаление карточки
   clonElement.querySelector('.cards__delete').addEventListener('click', () => {
@@ -73,19 +73,18 @@ newButtonLocation.addEventListener('click', (evt) => {
   clonElement.querySelector('.cards__img').addEventListener('click', () => {
   openBigImage();
   document.querySelector('.popup__image').src = clonElement.querySelector('.cards__img').src;
-  document.querySelector('popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
+  document.querySelector('.popup__decription').textContent = clonElement.querySelector('.cards__text').textContent;
   closeBigImage();
   });
   //Слушатель установки LIke
   clonElement.querySelector('.cards__like').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('cards__like_active');
+    evt.target.classList.toggle('.cards__like_active');
   });
   //Слушатель удаление карточки
   clonElement.querySelector('.cards__delete').addEventListener('click', () => {
     clonElement.closest('.cards__item').remove();
   });
   //Функция удаления попапа "Новое место"
-  closeNewLocation();
   //Обнуление данных в полях попапа "новое место"
   title.value = ' ';
   link.value = ' ';
