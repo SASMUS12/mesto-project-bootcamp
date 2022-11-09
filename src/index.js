@@ -18,13 +18,13 @@ const newLocationBtn = document.querySelector("#newLocationBtn");
 
 const btnClosePopup = document.querySelectorAll(".popup__close-button");
 
-const popupContainer = document.forms.editProfile;
-const popupTitle = popupContainer.elements.title;
-const popupDescription = popupContainer.elements.description;
+export const popupContainer = document.querySelector('#formMyModal');
+export const popupTitle = popupContainer.querySelector('#title');
+export const popupDescription = popupContainer.querySelector('#description');
 
-const newButtonLocation = document.forms.addNewCard;
-export const title = newButtonLocation.elements.newTitle;
-export const link = newButtonLocation.elements.linkImg;
+export const newButtonLocation = document.querySelector('#addNewCard');
+export const title = document.querySelector('#newTitle');
+export const link = document.querySelector('#linkImg');
 
 initialCards.forEach((item) => {
   enterCard(item.name, item.link);

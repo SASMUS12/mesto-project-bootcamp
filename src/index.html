@@ -45,12 +45,12 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button" title="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="editProfile">
+      <form id="formMyModal" class="popup__form " name="editProfile" novalidate>
         <fildset class="popup__fieldset">
-          <input id="title" type="text" placeholder="Имя" class="popup__input popup__input_type_title" name="title" required minlength="2" maxlength="40">
-          <span class="form__input-error">Вы пропустили это поле</span>
-          <input id="description" type="text" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="200">
-          <span class="form__input-error">Вы пропустили это поле</span>
+          <input id="title" type="text" placeholder="Имя" class="popup__input popup__input_type_title" name="title" required minlength="2" maxlength="40" autocomplete="off">
+          <span class="popup__input-error">Вы пропустили это поле</span>
+          <input id="description" type="text" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="200" autocomplete="off">
+          <span class="popup__input-error">Вы пропустили это поле</span>
         </fildset>
         <button type="submit" class="popup__save-button" name="save">Сохранить</button>
       </form>
@@ -62,12 +62,12 @@
     <div class="popup__container">
       <button class="popup__close-button" type="button" title="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="addNewCard">
+      <form id="addNewCard" class="popup__form" name="addNewCard" novalidate>
         <fildset class="popup__fieldset">
           <input id="newTitle" type="text" placeholder="Название" class="newTitle popup__input popup__input_type_title" name="newTitle" required minlength="2" maxlength="30">
-          <span class="form__input-error">Необходимо заполнить данное поле</span>
+          <span class="popup__input-error">Необходимо заполнить данное поле</span>
           <input id="linkImg" type="url" placeholder="Ссылка на картинку" class="linkImg popup__input popup__input_type_description" name="linkImg" required minlength="2">
-          <span class="form__input-error">Необходимо заполнить данное поле</span>
+          <span class="popup__input-error">Необходимо заполнить данное поле</span>
          </fildset>
         <button type="submit" id='newButtonLocation' class="newButtonLocation popup__save-button" name="save">Создать</button>
       </form>
