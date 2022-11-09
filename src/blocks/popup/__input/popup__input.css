@@ -11,6 +11,14 @@
   padding: 30px 0 13px;
 }
 
+.popup__input:valid {
+  border-bottom: 1px solid green;
+}
+
+.popup__input:not(:placeholder-shown):invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
 @media screen and (max-width: 767px) {
   .popup__input {
     padding: 43px 0 13px;
