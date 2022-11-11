@@ -1,0 +1,8 @@
+.popup__input_invalid {
+  border-bottom: 1px red solid;
+}
+
+.popup__input_invalid:focus {
+  outline: none;
+  border-color: red;
+}

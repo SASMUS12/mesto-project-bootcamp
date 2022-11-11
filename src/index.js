@@ -3,6 +3,8 @@ import "./pages/index.css";
 import { initialCards } from "./components/array";
 import { openModal, closeModal } from "./components/utils";
 import { enterCard, addNewCards } from "./components/card";
+import { enableValidation, resetErrors} from "./components/validate"
+import { validationData } from "./components/modal"
 
 export const usersOnline = document.querySelector(".cards");
 export const addCard = document.querySelector(".template").content;
@@ -18,13 +20,13 @@ const newLocationBtn = document.querySelector("#newLocationBtn");
 
 const btnClosePopup = document.querySelectorAll(".popup__close-button");
 
-export const popupContainer = document.querySelector('#formMyModal');
-export const popupTitle = popupContainer.querySelector('#title');
-export const popupDescription = popupContainer.querySelector('#description');
+export const popupContainer = document.querySelector("#formMyModal");
+export const popupTitle = popupContainer.querySelector("#profileTextTitle");
+export const popupDescription = popupContainer.querySelector("#profileTextDescription");
 
-export const newButtonLocation = document.querySelector('#addNewCard');
-export const title = document.querySelector('#newTitle');
-export const link = document.querySelector('#linkImg');
+export const formNewLocation = document.querySelector("#addNewCard");
+export const title = document.querySelector("#cardTextTitle");
+export const link = document.querySelector("#cardImptLink");
 
 initialCards.forEach((item) => {
   enterCard(item.name, item.link);
@@ -32,13 +34,18 @@ initialCards.forEach((item) => {
 
 //Обработчик внесение информации в профиль(Добавлено)
 editBtnProfile.addEventListener("click", function () {
+  const formElement = modalEdit.querySelector('.popup__form')
+  resetErrors( formElement, validationData)
   openModal(modalEdit);
   formDefault();
 });
 
 //Обработчик события добавления карточки(Добавлено)
 newLocationBtn.addEventListener("click", function () {
+  const formElement = newLocation.querySelector('.popup__form')
+  resetErrors( formElement, validationData)
   openModal(newLocation);
+  formDefault()
 });
 
 btnClosePopup.forEach(function (element) {
@@ -47,14 +54,14 @@ btnClosePopup.forEach(function (element) {
   );
 });
 
-usersOnline.addEventListener('click', function(evt) {
-  if(evt.target.classList.contains('cards__like')) {
-    evt.target.classList.toggle('cards__like_active')
-   }
-  });
+usersOnline.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("cards__like")) {
+    evt.target.classList.toggle("cards__like_active");
+  }
+});
 
 //Обработчик для добавления новой карточки(Доработано)
-newButtonLocation.addEventListener("submit", addNewCards);
+formNewLocation.addEventListener("submit", addNewCards);
 
 //Обработчик редактирования профиля(Доработано)
 popupContainer.addEventListener("submit", editProfile);
@@ -71,3 +78,6 @@ function editProfile(evt) {
   profileAbout.textContent = popupDescription.value;
   closeModal(modalEdit);
 }
+
+//Запуск валидации
+enableValidation(validationData);
