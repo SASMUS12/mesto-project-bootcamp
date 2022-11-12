@@ -37,15 +37,14 @@ editBtnProfile.addEventListener("click", function () {
   const formElement = modalEdit.querySelector('.popup__form')
   resetErrors( formElement, validationData)
   openModal(modalEdit);
-  formDefault();
+  setformDefault();
 });
 
 //Обработчик события добавления карточки(Добавлено)
 newLocationBtn.addEventListener("click", function () {
   const formElement = newLocation.querySelector('.popup__form')
-  resetErrors( formElement, validationData)
+  resetErrors( formElement, validationData);
   openModal(newLocation);
-  formDefault()
 });
 
 btnClosePopup.forEach(function (element) {
@@ -67,7 +66,7 @@ formNewLocation.addEventListener("submit", addNewCards);
 popupContainer.addEventListener("submit", editProfile);
 
 //Функция передачи данных из профиля в попап(Добавлено)
-function formDefault() {
+function setformDefault() {
   popupTitle.value = profileName.textContent;
   popupDescription.value = profileAbout.textContent;
 }

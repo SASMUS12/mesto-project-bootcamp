@@ -9,12 +9,11 @@ export function handleEscape(event) {
 };
 
 export function handleOutside(event) {
-  const isClickInside = !!event.target.closest('.popup__container');
-  if (!isClickInside) {
-    const addModal = document.querySelector('.popup_opened')
+  const addModal = document.querySelector('.popup_opened');
+  if(!event.target.closest('.popup__container')) {
     closeModal(addModal);
-   };
-};
+  }
+}
 
 export const validationData = {
   formSelector: '.popup__form',
