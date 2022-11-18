@@ -1,7 +1,9 @@
 .cards__content {
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: 24px 15px 26px 21px;
+  padding: 25px 15px 22px 21px;
   border-radius: 0 0 10px 10px;
+  gap: 35px;
 }

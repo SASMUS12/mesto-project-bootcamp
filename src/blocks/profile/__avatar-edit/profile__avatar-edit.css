@@ -1,13 +1,52 @@
 .profile__avatar-edit {
+  padding: 0;
   background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  width: 127px;
+  height: auto;
+  margin-right: 25px;
   cursor: pointer;
+  position:relative;
   display: flex;
-  justify-content: center;
-  margin: 0;
-  height: 128px;
-  width: 128px;
-  margin-right: 26px;
-  margin-bottom: 7px;
+}
+
+.profile__avatar-edit::before {
+  content: "";
+  background-color: rgba(0, 0, 0, .8);
+  display: block;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  height: 130px;
+  width: 130px;
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  opacity: 0;
+  transition: opacity .4s ease-in-out;
+}
+
+.profile__avatar-edit::after {
+  background: rgba(0, 0, 0, 0.8) url(../../../images/pen.svg) center no-repeat;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 50px;
+  left: 50px;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  content: '';
+  display: block;
+}
+
+.profile__avatar-edit:hover::after {
+  opacity: 1;
+}
+
+.profile__avatar-edit:hover::before {
+  opacity: 1;
 }
 
 @media screen and (max-width: 767px){

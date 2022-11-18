@@ -15,11 +15,13 @@
   </header>
   <main class="content">
     <section class="profile">
-      <div class="profile__avatar-edit"><img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар пофиля"></div>
+      <button class="profile__avatar-edit" title="Сменить аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар пофиля">
+      </button>
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <h1 class="profile__name">Имя пользователя</h1>
         <button id="myBtn" class="profile__btn-edit button" type="button" title="Редактировать профиль"></button>
-        <p class="profile__about">Исследователь океана</p>
+        <p class="profile__about">О пользователе</p>
       </div>
       <button id="newLocationBtn" class="profile__booton-add button" type="button" title="Добавить новую карточку"></button>
     </section>
@@ -32,7 +34,7 @@
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <!-- Попап открытия изображения карточки -->
+  <!-- popup открытия изображения карточки -->
   <article id="bigImage" class="popup popup_type-image">
 	  <div class=popup__content>
 		  <button class="popup__close popup__close-button" title="Закрыть" type="button"></button>
@@ -40,19 +42,21 @@
       <h2 class="popup__decription"></h2>
     </div>
   </article>
-
+  <!-- popup редактирования профиля -->
   <div id="myModal" class="popup">
     <div class="popup__container">
       <button class="popup__close-button" type="button" title="Закрыть"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
       <form id="formMyModal" action="#" class="popup__form" name="editProfile" novalidate>
+        <h2 class="popup__title">Редактировать профиль</h2>
         <label class="popup__fieldset">
-          <input id="profileTextTitle" type="text" placeholder="Имя" class="popup__input popup__input_type_title" name="title" required minlength="2" maxlength="40" autocomplete="off">
+          <input id="profileTextTitle" type="text" value="" placeholder="Имя" class="popup__input popup__input_type_title" name="title" required minlength="2" maxlength="40" autocomplete="off">
           <span id="profileTextTitle-error" class="popup__input-error"></span>
-          <input id="profileTextDescription" type="text" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="200" autocomplete="off">
+        </label>
+        <label class="popup__fieldset">
+          <input id="profileTextDescription" type="text" value="" placeholder="О себе" class="popup__input popup__input_type_description" name="description" required minlength="2" maxlength="200" autocomplete="off">
           <span id="profileTextDescription-error" class="popup__input-error"></span>
         </label>
-        <button type="submit" class="popup__save-button" name="save">Сохранить</button>
+        <button type="submit" value="Сохранить" class="popup__save-button" name="save">Сохранить</button>
       </form>
     </div>
   </div>
@@ -61,15 +65,30 @@
   <div id="newLocation" class="popup">
     <div class="popup__container">
       <button class="popup__close-button" type="button" title="Закрыть"></button>
-      <h2 class="popup__title">Новое место</h2>
       <form id="addNewCard" action="#" class="popup__form" name="addNewCard" novalidate>
+        <h2 class="popup__title">Новое место</h2>
         <label class="popup__fieldset">
-          <input id="cardTextTitle" type="text" placeholder="Название" class="popup__input popup__input_type_title" name="newTitle" required minlength="2" maxlength="30">
+          <input id="cardTextTitle" type="text" placeholder="Название" class="popup__input popup__input_type_title" name="newTitle" value="" required minlength="2" autocomplete="off" maxlength="30">
           <span id="cardTextTitle-error" class="popup__input-error"></span>
-          <input id="cardImptLink" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_type_description" name="linkImg" required minlength="2">
+          <input id="cardImptLink" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_type_description" value="" autocomplete="off" name="linkImg" required minlength="2">
           <span id="cardImptLink-error" class="popup__input-error"></span>
          </label>
-        <button type="submit" id='newButtonLocation' class="newButtonLocation popup__save-button" name="save">Создать</button>
+        <button type="submit" value="Сохранить" id='newButtonLocation' class="newButtonLocation popup__save-button" name="save">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- popup обновления аватара -->
+  <div id="updateAvatar" class="popup">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" title="Закрыть"></button>
+      <form action="#" class="popup__form" name="formUpdateAvatar" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <label class="popup__fieldset">
+          <input id="updateAvatarInput" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_type_description" value="" name="linkAvatar" required minlength="2">
+          <span id="updateAvatarInput-error" class="popup__input-error"></span>
+         </label>
+        <button type="submit" value="Сохранить" class="popup__save-button" name="save">Сохранить</button>
       </form>
     </div>
   </div>
@@ -77,11 +96,14 @@
   <!-- Шаблон карточек -->
   <template class="template">
     <li class="cards__item">
-      <button type="button" class="cards__delete" title="Закрыть"></button>
-      <img class="cards__img" src="" alt="">
+      <button type="button" class="cards__delete" type="button" title="Закрыть"></button>
+      <img class="cards__img" src="#" alt="Фотография пользователя">
       <div class="cards__content">
-        <h2 class="cards__text"></h2>
-        <button type="button" class="cards__like"></button>
+        <h2 class="cards__text">Город</h2>
+        <div class="cards__like-box">
+          <button type="button" class="cards__like"></button>
+          <span class="cards__like-counter"></span>
+        </div>
       </div>
     </li>
   </template>

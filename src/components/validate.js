@@ -61,8 +61,8 @@ export function enableValidation(formData) {
     form.addEventListener('submit', (e) => {
       e.preventDefault()
       resetErrors(form, formData);
-      const submitButton = form.querySelector(formData.submitButtonSelector);
-      toogleButtonState(form, submitButton, formData)
+      // const submitButton = form.querySelector(formData.submitButtonSelector);
+      // toogleButtonState(form, submitButton, formData)
     });
   setFormValidityHandler(form, formData);
   });
