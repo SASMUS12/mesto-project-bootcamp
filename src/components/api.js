@@ -14,10 +14,10 @@ export function handleBasicResponse(res) {
   return res.json();
 }
 
-// //Ошибка обработки
-// export function handleError(err) {
-//   console.log(`Ошибка: ${err}`)
-// }
+//Ошибка обработки
+export function handleError(err) {
+  console.error(`Ошибка: ${err}`)
+}
 
 //POST запрос карточек с сервера
 export function postNewCard(name, link) {
@@ -28,7 +28,8 @@ export function postNewCard(name, link) {
       name,
       link,
     }),
-  }).then(handleBasicResponse);
+  })
+  .then(handleBasicResponse);
 }
 
 //Редактирование профиля
@@ -40,21 +41,24 @@ export function updateProfileData(userName, userAbout) {
       name: userName,
       about: userAbout,
     }),
-  }).then(handleBasicResponse);
+  })
+  .then(handleBasicResponse);
 }
 
 //Получаем карточки с сервера
 export function getInitialCards() {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers,
-  }).then(handleBasicResponse);
+  })
+  .then(handleBasicResponse);
 }
 
 //Получить данные профиля
 export function getProfileData() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  }).then(handleBasicResponse);
+  })
+  .then(handleBasicResponse);
 }
 //Обновление профиля аватар
 export function updateProfileAvatar(src) {
@@ -64,7 +68,8 @@ export function updateProfileAvatar(src) {
     body: JSON.stringify({
       avatar: src,
     }),
-  }).then(handleBasicResponse);
+  })
+  .then(handleBasicResponse);
 }
 
 //Удалить карточки
@@ -73,11 +78,9 @@ export function removeApiCard(id) {
     method: "DELETE",
     headers: config.headers,
   })
-    .then(handleBasicResponse)
-    .catch((err) => {
-      console.error(err); // выводим ошибку в консоль
-    });
+  .then(handleBasicResponse)
 }
+
 //Добавть лайк
 export function addLike(id) {
   return fetch(`${config.baseUrl}/cards/likes/${id}`, {
@@ -90,5 +93,6 @@ export function deleteLike(id) {
   return fetch(`${config.baseUrl}/cards/likes/${id}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(handleBasicResponse);
+  })
+  .then(handleBasicResponse);
 }

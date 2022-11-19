@@ -11,7 +11,7 @@ import {
   renderLoading,
   link,
 } from "../index.js";
-import { postNewCard, removeApiCard, addLike, deleteLike } from "./api";
+import { postNewCard, removeApiCard, addLike, handleError, deleteLike } from "./api";
 
 export function createCards(newCard) {
   const clonElement = addCard.querySelector(".cards__item").cloneNode(true);
@@ -73,9 +73,10 @@ export function addNewCards(evt) {
       evt.target.reset();
       closeModal(newLocation);
     })
-    .catch((err) => {
-      console.error(err); // выводим ошибку в консоль
+    .catch(() => {
+      handleError(); // выводим ошибку в консоль
       evt.submitter.classList.add(validationData.disabledBtnClass);
+      button.setAttribute('disabled', '');
     })
     .finally(() => {
       renderLoading(false, button);
@@ -88,9 +89,8 @@ function removeCard(clonElement, button) {
       .then(() => {
         clonElement.closest(".cards__item").remove();
       })
-      .catch((err) => {
-        console.error(err); // выводим ошибку в консоль
-      });
+      .catch(handleError);
+      button.removeAttribute('disabled', '');
   });
 }
 
@@ -104,9 +104,7 @@ function handleAddLike(cardLike, clonElementId, likeCounter) {
       likeCounter.textContent = res.likes.length;
       cardLike.classList.add("cards__like_active");
     })
-    .catch((err) => {
-      console.error(err); // выводим ошибку в консоль
-    });
+    .catch(handleError);
 }
 
 function handleDeletelike(cardLike, clonElementId, likeCounter) {
@@ -119,7 +117,5 @@ function handleDeletelike(cardLike, clonElementId, likeCounter) {
       }
       cardLike.classList.remove("cards__like_active");
     })
-    .catch((err) => {
-      console.error(err); // выводим ошибку в консоль
-    });
+    .catch(handleError);
 }

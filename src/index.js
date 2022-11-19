@@ -1,10 +1,19 @@
 import "./pages/index.css";
 import { openModal, closeModal } from "./components/utils";
 import { enterCard, addNewCards } from "./components/card";
-import { enableValidation, resetErrors} from "./components/validate";
+import {
+  enableValidation,
+  resetErrors,
+  setFormValidityHandler
+} from "./components/validate";
 import { validationData } from "./components/modal";
-import { getInitialCards,updateProfileData, getProfileData, updateProfileAvatar, handleError } from './components/api.js';
-
+import {
+  getInitialCards,
+  updateProfileData,
+  getProfileData,
+  updateProfileAvatar,
+  handleError,
+} from "./components/api.js";
 
 //Карточка клонирования
 export const usersOnline = document.querySelector(".cards");
@@ -17,57 +26,62 @@ export const bigImage = document.querySelector("#bigImage");
 //popup редактирования профиля
 const modalEdit = document.querySelector("#myModal");
 const editBtnProfile = document.querySelector("#myBtn");
-export const popupContainerForm = document.forms['editProfile'];
+export const popupContainerForm = document.forms["editProfile"];
 export const popupTitle = document.querySelector("#profileTextTitle");
-export const popupDescription = document.querySelector("#profileTextDescription");
+export const popupDescription = document.querySelector(
+  "#profileTextDescription"
+);
 
 //popup новое место
 export const newLocation = document.querySelector("#newLocation");
 const newLocationBtn = document.querySelector("#newLocationBtn");
-export const formNewLocation = document.forms['addNewCard'];
+export const formNewLocation = document.forms["addNewCard"];
 export const title = document.querySelector("#cardTextTitle");
 export const link = document.querySelector("#cardImptLink");
+const inputNewLoc = document.querySelector('.popup__input');
 
 //popup обновления аватара
-const updateAvatar = document.querySelector('#updateAvatar')
-const editAvatarBtn = document.querySelector('.profile__avatar-edit');
-export const formUpdateAvatar = document.forms['formUpdateAvatar'];
-const editAvatarInput = document.querySelector('#updateAvatarInput');
+const updateAvatar = document.querySelector("#updateAvatar");
+const editAvatarBtn = document.querySelector(".profile__avatar-edit");
+export const formUpdateAvatar = document.forms["formUpdateAvatar"];
+const editAvatarInput = document.querySelector("#updateAvatarInput");
 
 //Данные профиля, аголовок, подзаголовок и картинка
 const profileName = document.querySelector(".profile__name");
 const profileAbout = document.querySelector(".profile__about");
 const profileAvatar = document.querySelector(".profile__avatar");
 
-const btnClosePopup = document.querySelectorAll(".popup__close-button");
+const btnClosePopups = document.querySelectorAll(".popup__close-button");
 
 export let userId;
 
-btnClosePopup.forEach(element => {
+btnClosePopups.forEach((element) => {
   element.addEventListener("click", () => {
-    const buttonPopup = element.closest('.popup')
-    closeModal(buttonPopup)
+    const buttonPopup = element.closest(".popup");
+    closeModal(buttonPopup);
   });
 });
 
 //Слушатель внесение информации в профиль(Добавлено)
 editBtnProfile.addEventListener("click", function () {
-  resetErrors(popupContainerForm, validationData)
+  resetErrors(popupContainerForm, validationData);
   openModal(modalEdit);
   setformDefault();
 });
 
 //Слушатель события добавления карточки(Добавлено)
 newLocationBtn.addEventListener("click", function () {
-  resetErrors( formNewLocation, validationData);
+  resetErrors(formNewLocation, validationData);
   openModal(newLocation);
+  setFormValidityHandler( formNewLocation, validationData);
 });
 
 //Слушатель смены аватара
-editAvatarBtn.addEventListener('click', () => {
-    resetErrors(formUpdateAvatar, validationData);
-    openModal(updateAvatar);
-  })
+editAvatarBtn.addEventListener("click", () => {
+  resetErrors(formUpdateAvatar, validationData);
+  openModal(updateAvatar);
+  setFormValidityHandler(formUpdateAvatar, validationData);
+});
 
 // Like для всей страницы без сервера
 // usersOnline.addEventListener("click", function (evt) {
@@ -87,21 +101,21 @@ formUpdateAvatar.addEventListener("submit", editAvatar);
 function editProfile(evt) {
   evt.preventDefault();
   const button = evt.submitter;
-  renderLoading(true, button)
+  renderLoading(true, button);
   updateProfileData(popupTitle.value, popupDescription.value)
-  .then(newData => {
-    profileName.textContent = newData.name;
-    profileAbout.textContent = newData.about;
-    evt.target.reset();
-    closeModal(modalEdit);
-  })
-  .catch((err) => {
-    console.error(err); // выводим ошибку в консоль
-  })
-  .finally(() => {
-    renderLoading(false, button)
-  })
-};
+    .then((newData) => {
+      profileName.textContent = newData.name;
+      profileAbout.textContent = newData.about;
+      evt.target.reset();
+      closeModal(modalEdit);
+    })
+    .catch((err) => {
+      console.error(err); // выводим ошибку в консоль
+    })
+    .finally(() => {
+      renderLoading(false, button);
+    });
+}
 
 //Функция передачи данных из профиля в попап
 function setformDefault() {
@@ -113,19 +127,17 @@ function setformDefault() {
 function editAvatar(evt) {
   evt.preventDefault();
   const button = evt.submitter;
-  renderLoading(true, button)
+  renderLoading(true, button);
   updateProfileAvatar(editAvatarInput.value)
-  .then(newData => {
-    profileAvatar.src = newData.avatar;
-    evt.target.reset();
-    closeModal(updateAvatar);
-  })
-  .catch((err) => {
-    console.error(err); // выводим ошибку в консоль
-  })
-  .finally(() => {
-    renderLoading(false, button)
-  })
+    .then((newData) => {
+      profileAvatar.src = newData.avatar;
+      evt.target.reset();
+      closeModal(updateAvatar);
+    })
+    .catch(handleError)
+    .finally(() => {
+      renderLoading(false, button);
+    });
 }
 
 //Вставляет данные профиля
@@ -136,25 +148,24 @@ function insertDataProfile(obj) {
 }
 
 Promise.all([getInitialCards(), getProfileData()])
-.then(([cards, profileData]) => {
-  insertDataProfile(profileData);
-  userId = profileData._id;
-  const cardList = Array.from(cards).reverse();
-  cardList.forEach(enterCard)
-})
-.catch((err) => {
-  console.error(err); // выводим ошибку в консоль
-})
+  .then(([cards, profileData]) => {
+    insertDataProfile(profileData);
+    userId = profileData._id;
+    const cardList = Array.from(cards).reverse();
+    cardList.forEach(enterCard);
+  })
+  .catch(handleError);
+
 //Загрузка рендеринга
 export function renderLoading(isLoading, button) {
-  if(isLoading) {
-    button.textContent = 'Сохранение...';
-    button.setAttribute('disabled', '');
+  if (isLoading) {
+    button.textContent = "Сохранение...";
+    button.setAttribute("disabled", "");
     return;
   }
-    button.textContent = 'Сохранить';
-    button.classList.add(validationData.disabledBtnClass);
-    button.removeAttribute('disabled', '');
+  button.textContent = "Сохранить";
+  button.classList.add(validationData.disabledBtnClass);
+  button.removeAttribute("disabled", "");
 }
 
 //Запуск валидации
