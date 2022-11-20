@@ -28,9 +28,7 @@ const modalEdit = document.querySelector("#myModal");
 const editBtnProfile = document.querySelector("#myBtn");
 export const popupContainerForm = document.forms["editProfile"];
 export const popupTitle = document.querySelector("#profileTextTitle");
-export const popupDescription = document.querySelector(
-  "#profileTextDescription"
-);
+export const popupDescription = document.querySelector("#profileTextDescription");
 
 //popup новое место
 export const newLocation = document.querySelector("#newLocation");
@@ -40,8 +38,6 @@ export const formNewLocation = document.forms["addNewCard"];
 export const title = document.querySelector("#cardTextTitle");
 export const link = document.querySelector("#cardImptLink");
 const popupSaveButton = document.querySelector('.popup__save-button_disabled');
-// const inputNewLoc = document.querySelector('.popup__input');
-
 
 //popup обновления аватара
 const updateAvatar = document.querySelector("#updateAvatar");
