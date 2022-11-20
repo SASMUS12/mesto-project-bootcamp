@@ -4,14 +4,12 @@ export function handleEscape(event) {
   if (event.key === 'Escape') {
     const addModal = document.querySelector('.popup_opened')
     closeModal(addModal);
-
   };
 };
 
 export function handleOutside(event) {
-  const addModal = document.querySelector('.popup_opened');
   if(!event.target.closest('.popup__container')) {
-    closeModal(addModal);
+    closeModal(event.target);
   }
 }
 

@@ -27,7 +27,7 @@
 }
 
 .profile__avatar-edit::after {
-  background: rgba(0, 0, 0, 0.8) url(../../../images/pen.svg) center no-repeat;
+  background: url(../../../images/pen.svg);
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;

@@ -80,8 +80,7 @@ export function enableValidation(formData) {
 
 //Функция принимает массив поле
 function hasInvalidInput(formElement, formData) {
-  const inputList = Array.from(
-    formElement.querySelectorAll(formData.inputSelector)
+  const inputList = Array.from(formElement.querySelectorAll(formData.inputSelector)
   );
   return inputList.some((input) => {
     isValid(input, formElement, formData);

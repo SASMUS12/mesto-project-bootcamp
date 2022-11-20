@@ -4,7 +4,7 @@ import { enterCard, addNewCards } from "./components/card";
 import {
   enableValidation,
   resetErrors,
-  setFormValidityHandler
+  toggleButtonState
 } from "./components/validate";
 import { validationData } from "./components/modal";
 import {
@@ -35,14 +35,18 @@ export const popupDescription = document.querySelector(
 //popup новое место
 export const newLocation = document.querySelector("#newLocation");
 const newLocationBtn = document.querySelector("#newLocationBtn");
+const buttonLocationBtn = document.querySelector('#newLocationbtnSave');
 export const formNewLocation = document.forms["addNewCard"];
 export const title = document.querySelector("#cardTextTitle");
 export const link = document.querySelector("#cardImptLink");
-const inputNewLoc = document.querySelector('.popup__input');
+const popupSaveButton = document.querySelector('.popup__save-button_disabled');
+// const inputNewLoc = document.querySelector('.popup__input');
+
 
 //popup обновления аватара
 const updateAvatar = document.querySelector("#updateAvatar");
 const editAvatarBtn = document.querySelector(".profile__avatar-edit");
+const buttonAvatarBtn = document.querySelector('#updateAvatarBtnSave');
 export const formUpdateAvatar = document.forms["formUpdateAvatar"];
 const editAvatarInput = document.querySelector("#updateAvatarInput");
 
@@ -73,14 +77,14 @@ editBtnProfile.addEventListener("click", function () {
 newLocationBtn.addEventListener("click", function () {
   resetErrors(formNewLocation, validationData);
   openModal(newLocation);
-  setFormValidityHandler( formNewLocation, validationData);
+  toggleButtonState(formNewLocation, buttonLocationBtn, validationData);
 });
 
 //Слушатель смены аватара
 editAvatarBtn.addEventListener("click", () => {
   resetErrors(formUpdateAvatar, validationData);
   openModal(updateAvatar);
-  setFormValidityHandler(formUpdateAvatar, validationData);
+  toggleButtonState(formUpdateAvatar, buttonAvatarBtn, validationData);
 });
 
 // Like для всей страницы без сервера
