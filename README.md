@@ -69,4 +69,4 @@
 
 ## :fire: Ссылка на проект:
 
-[GitHub Pages](https://sasmus12.github.io/mesto-project-bootcamp/)
+https://sasmus12.github.io/mesto-project-bootcamp/
